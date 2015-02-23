@@ -38,6 +38,14 @@ var numUsers = 0;
 io.on('connection', function (socket) {
   var addedUser = false;
 
+
+  // when the client emits 'new message', this listens and executes
+  socket.on('control move', function () {
+    socket.broadcast.emit('move box');
+  });
+
+
+
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     // we tell the client to execute 'new message'

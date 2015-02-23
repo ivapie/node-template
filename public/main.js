@@ -15,6 +15,11 @@ $(function() {
 
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
+  var $controlPage = $('.controls.page'); // The chatroom page
+
+  var $controlUp = $('.controls .up');
+  var $controlDown = $('.controls .down'); 
+  var $box = $('#box'); // The chatroom page
 
   // Prompt for setting a username
   var username;
@@ -42,9 +47,9 @@ $(function() {
     // If the username is valid
     if (username) {
       $loginPage.fadeOut();
-      $chatPage.show();
+      $controlPage.show();
       $loginPage.off('click');
-      $currentInput = $inputMessage.focus();
+      //$currentInput = $inputMessage.focus();
 
       // Tell the server your username
       socket.emit('add user', username);
@@ -193,10 +198,6 @@ $(function() {
   $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
 
-
-    console.log( event.ctrlKey )
-
-
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
       $currentInput.focus();
     }
@@ -228,6 +229,21 @@ $(function() {
     $inputMessage.focus();
   });
 
+
+  $controlUp.click(function() {
+    socket.emit('control move');
+  });
+
+
+  $controlDown.click(function() {
+      $box.animate({
+          top: "+=50"
+        }, 500, function() {
+          // Animation complete.
+        });
+  });
+
+
   // Socket events
 
   // Whenever the server emits 'login', log the login message
@@ -240,6 +256,17 @@ $(function() {
     });
     addParticipantsMessage(data);
   });
+
+
+  socket.on('move box', function () {
+      $box.animate({
+          top: "-=50"
+        }, 500, function() {
+          // Animation complete.
+        });
+  });
+
+
 
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {

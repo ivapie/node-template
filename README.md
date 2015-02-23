@@ -1,13 +1,11 @@
-# Socket.IO Chat
+# Game Cecropia
 
 A simple chat demo for socket.io
 
 ## How to use
 
 ```
-$ cd socket.io
-$ npm install
-$ cd examples/chat
+$ cd examples/game-cecropia
 $ npm install
 $ node .
 ```

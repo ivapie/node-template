@@ -4,8 +4,30 @@
   <meta charset="UTF-8">
   <title>Ivanchis's Game</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+
+  	body{
+  		position: relative;
+  	}
+
+  	#box{
+  		width: 100px;
+  		height: 100px;
+  		background: red;
+		margin: 500px auto;
+		left: 50%;
+		top: 20%;
+		position: absolute;
+  	}
+
+  </style>
 </head>
 <body>
-	Hello game
+	<div id="box"></div>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+
 </body>
 </html>
